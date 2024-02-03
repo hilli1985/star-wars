@@ -1,52 +1,54 @@
 // src/components/CharacterList.tsx
 import React from "react";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { useSearchContext } from "../SearchContext";
 import CustomInput from "./CustomInput";
+import CustomButton from "./CustomButton";
+import CustomGrid from "./CustomGrid";
+
 
 const SearchBar: React.FC<any> = () => {
-  const { query, setQuery, handleSearch } = useSearchContext();
+  const { query, setQuery, handleSearch, theme } = useSearchContext();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
 
+  const handleKeyDown = (event: any) => {
+    // Check if the key down is Enter
+    if (event.key === 'Enter') {
+      setQuery("");
+      handleSearch();
+    }
+  };
+
   return (
-    <Grid
-      spacing={2}
-      style={{
-        padding: 16,
-        display: "flex",
-        alignItems: "stretch",
-        width: "50%",
-        margin: "auto"
-      }}
+    <CustomGrid
+      spacing={4}
     >
-      <CustomInput placeholder="Search Character"    
-       type="search"
-       fullWidth
-       value={query}
-       onChange={handleSearchChange}
-       size="small"
-      //  sx={{ borderColor: "#C8C8C8", color: "#FFE300" }}
-      
+      <CustomInput placeholder="Search Character"
+        type="search"
+        fullWidth
+        value={query}
+        onChange={handleSearchChange}
+        onKeyDown={handleKeyDown}
+        size="small"
+        theme={theme}
+
       />
-      <Button
-        sx={{ backgroundColor: "#454A4E", color: "#C8C8C8" }}
-        // color="secondary"
-        variant="contained"
+      <CustomButton
+        theme={theme}
+        color="primary"
+        variant="outlined"
         onClick={() => {
           setQuery("");
           handleSearch();
         }}
-        style={{ marginLeft: 8 }}
         size="medium"
       >
         Search
-      </Button>
-    </Grid>
+      </CustomButton>
+
+    </CustomGrid>
   );
 };
 

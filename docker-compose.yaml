@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  my-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: my-server
+    ports:
+      - "3001:3001"
+    restart: always
+
+  my-client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: my-client
+    ports:
+      - "8080:8080"
+    restart: always

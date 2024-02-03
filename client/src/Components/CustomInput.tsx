@@ -1,12 +1,20 @@
-// CustomInput.tsx
 import InputBase from '@mui/material/InputBase';
-import { styled } from '@mui/system';
+import { Theme, styled } from '@mui/system';
 
-const CustomInput = styled(InputBase)({
-  color: '#c8c8c8',
-  border: '1px solid #c8c8c8',
+
+interface IProps {
+  theme: Theme
+}
+
+
+const CustomInput = styled(InputBase)(({ theme }: IProps)=>({
+  color: theme.palette.secondary.contrastText,
+  border: `1px solid ${theme.palette.secondary.contrastText}`,
   padding: '1px',
-  borderRadius:'5px'
-});
+  borderRadius:'5px',
+  "&:focus-within": {
+    borderColor: theme.palette.secondary.main,
+  }
+}));
 
 export default CustomInput;

@@ -2,6 +2,9 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import CharacterCard from './CharacterCard';
 import { useSearchContext } from '../SearchContext';
+import { Typography } from '@mui/material';
+import CustomGrid from './CustomGrid';
+import { margin } from '@mui/system';
 
 export interface Character {
   name: string;
@@ -10,21 +13,21 @@ export interface Character {
   gender: string;
 }
 
-interface CharacterListProps {
-  characters: Character[];
-}
 
-const CharacterList: React.FC<CharacterListProps> = () => {
-  const {  searchResults } = useSearchContext();
+const CharacterList: React.FC = () => {
+  const {  searchResults, theme } = useSearchContext();
   console.log(searchResults);
   return (
-    !!searchResults.length ? <Grid container spacing={4}  style={{ padding: 16 }}>
+    !!searchResults.length ? <CustomGrid container spacing={4} style={{marginTop:16}}  >
       {searchResults.map((character, index) => (
-        <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
+        <Grid key={index} xs={12} sm={6} md={4} lg={4} >
           <CharacterCard character={character} index={index.toString()} />
         </Grid>
       ))}
-    </Grid>: <div className="app-header">Nothing To Show...</div>
+    </CustomGrid>: 
+    <Typography variant="h6" component="div" color={{color:theme.palette.secondary.main}} margin={"5vh"}>
+    Nothing To Show...
+  </Typography>
   );
 };
 

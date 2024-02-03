@@ -1,8 +1,10 @@
 import React from 'react';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Character } from './CharacterList';
+import GenderAvatar from './GenderAvatar';
+import { useSearchContext } from '../SearchContext';
+import CustomCard from './CustomCard';
 
 
 interface IProps {
@@ -12,24 +14,23 @@ interface IProps {
 
 const CharacterCard = ({character} : IProps) => {
   const { name, height, mass, gender } = character as Character;
+  const { theme } = useSearchContext();
 
   return (
-    <Card style={{background:"#393E43"}}>
+    <CustomCard theme={theme}>
       <CardContent>
-        <Typography variant="h5" component="div" style={{color:"#FFE300"}}>
+        <Typography variant="h5" component="div" color={{color:theme.palette.secondary.main}}>
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary" style={{color:"#C8C8C8"}}>
+        <Typography variant="body1" color={{color:theme.palette.text.secondary}} >
           Height: {height} cm
         </Typography>
-        <Typography variant="body2" color="text.secondary" style={{color:"#C8C8C8"}}>
-          Mass: {mass} kg
+        <Typography variant="body1" color={{color:theme.palette.text.secondary}}>
+          Mass: {mass} {mass === 'unknown' ? '': 'kg'} 
         </Typography>
-        <Typography variant="body2" color="text.secondary" style={{color:"#C8C8C8"}}>
-          Gender: {gender}
-        </Typography>
+         <GenderAvatar gender={gender} theme={theme} />
       </CardContent>
-    </Card>
+    </CustomCard>
   );
 };
 

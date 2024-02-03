@@ -4,61 +4,38 @@ import SearchBar from "./Components/SearchBar";
 import { ThemeProvider } from "styled-components";
 import { themeDark, themeLight } from "./theme";
 import './App.css'
-import { SearchContextProvider, useSearchContext } from "./SearchContext";
+import { useSearchContext } from "./SearchContext";
 import Spinner from "./Components/Spinner";
-
-const characterList = [
-  {
-    name: "Luke Skywalker",
-    height: "172",
-    mass: "77",
-    gender: "male",
-  },
-  {
-    name: "Luke Skywalker",
-    height: "172",
-    mass: "77",
-    gender: "male",
-  },
-  {
-    name: "Luke Skywalker",
-    height: "172",
-    mass: "77",
-    gender: "male",
-  },
-  {
-    name: "Luke Skywalker",
-    height: "172",
-    mass: "77",
-    gender: "male",
-  },
-  {
-    name: "Luke Skywalker",
-    height: "172",
-    mass: "77",
-    gender: "male",
-  },
-];
+import { Typography } from "@mui/material";
+import Toaster from "./Components/Toaster";
 
 function App() {
-  const { isLoading } = useSearchContext();
+  const { isLoading, open, setOpen, severity, message } = useSearchContext();
   const [light, setLight] = React.useState(false);
-  const theme = light ? themeLight : themeDark;
+  const { theme, setTheme } = useSearchContext();
+  
+
+  useEffect(() => {
+    setTheme(light ? themeLight : themeDark)
+  }, [setLight, light, setTheme])
+
 
   useEffect(() => {
     setLight(false)
-  }, [])
-
+  }, [setLight, light])
 
 
   return (
-    
+
     <ThemeProvider theme={theme}>
       <div className="App">
-        <div className="app-header">Star Wars</div>
+        <Typography variant="h4" component="div" color={{ color: theme.palette.secondary.main }}>
+          Star Wars
+        </Typography>
         <SearchBar />
-        {isLoading ? <Spinner/> : 
-        <CharacterList characters={[]} />}
+        <Toaster message={message} severity={severity} open={open} setOpen={setOpen}/>
+        {isLoading ? <Spinner /> :
+          <CharacterList />}
       </div>
     </ThemeProvider>
   );
