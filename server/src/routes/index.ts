@@ -6,7 +6,7 @@ const router: Router = express.Router();
 router.use('/api/character', characterRoute);
 
 router.get('/api', (req: Request, res: Response) => {
-    res.json({ message: 'API main routes' });
+    res.send('API main routes');
   });
 
 export default router;

@@ -1,4 +1,4 @@
-# Use an official Node.js LTS (Long Term Support) image as a parent image
+# Use a base Node.js image
 FROM node:20
 
 # Set the working directory in the container
@@ -10,11 +10,14 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install
 
-# Bundle app source
+# Copy the rest of the application code
 COPY . .
+
+# Build TypeScript code
+RUN npm run build
 
 # Expose the port the app runs on
 EXPOSE 3001
 
-# Define the command to run your app
-CMD ["npm", "start"]
+# Command to run the server
+CMD ["node", "dist/index.js"]

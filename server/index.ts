@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
+import dotenv from "dotenv";
+
 import mainRoutes from './src/routes';
 const cors = require('cors');
+dotenv.config();
 
-
-const app = express();
-const port = 3001;
+export const app = express();
+const port = process.env.PORT || 3001;
 
 // Enable CORS for all routes
 app.use(cors());

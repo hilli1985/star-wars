@@ -1,4 +1,5 @@
 import express, { Router, Request, Response } from "express";
+import { parseUrl } from "./util/util";
 const axios = require("axios");
 
 const router: Router = express.Router();
@@ -8,14 +9,6 @@ interface ICharacter {
   height: number;
   mass: number;
   gender: string
-}
-
-const parseUrl = (url:string | null) => {
-  if (url) {
-    return url.split('&page=')[1] 
-  }
-  return url;
-
 }
 
 router.get("/", async (req: Request, res: Response) => {
