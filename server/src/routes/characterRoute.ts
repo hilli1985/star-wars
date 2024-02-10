@@ -25,11 +25,10 @@ router.get("/", async (req: Request, res: Response) => {
     const page = req.query.page || ""; 
     // Build the Star Wars API URL with query parameters
     const apiUrl = `https://swapi.dev/api/people/?search=${search}&page=${page}`;
-    console.log(apiUrl)
+    console.log(apiUrl);
     
     // Make a GET request to the Star Wars API
     const response = await axios.get(apiUrl);
-    // res.json(response.data);
 
     // Extract character data from the API response
     const characters = response.data.results.map((character: ICharacter) => ({
