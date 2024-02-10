@@ -10,7 +10,7 @@ const port = 3001;
 app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, World!');
+  res.send('May the force be with you!');
 });
 
 app.use('/', mainRoutes);

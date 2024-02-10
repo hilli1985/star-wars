@@ -7,12 +7,12 @@ import { useSearchContext } from '../SearchContext';
 import CustomCard from './CustomCard';
 
 
-interface IProps {
+interface CharacterCardProps {
   character:Character
   index: string
 }
 
-const CharacterCard = ({character} : IProps) => {
+const CharacterCard = ({character} : CharacterCardProps) => {
   const { name, height, mass, gender } = character as Character;
   const { theme } = useSearchContext();
 

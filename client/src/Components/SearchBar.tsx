@@ -16,7 +16,6 @@ const SearchBar: React.FC<any> = () => {
   const handleKeyDown = (event: any) => {
     // Check if the key down is Enter
     if (event.key === 'Enter') {
-      setQuery("");
       handleSearch();
     }
   };
@@ -37,10 +36,8 @@ const SearchBar: React.FC<any> = () => {
       />
       <CustomButton
         theme={theme}
-        color="primary"
-        variant="outlined"
+        variant="contained"
         onClick={() => {
-          setQuery("");
           handleSearch();
         }}
         size="medium"

@@ -2,12 +2,12 @@ import InputBase from '@mui/material/InputBase';
 import { Theme, styled } from '@mui/system';
 
 
-interface IProps {
+interface CustomInputProps {
   theme: Theme
 }
 
 
-const CustomInput = styled(InputBase)(({ theme }: IProps)=>({
+const CustomInput = styled(InputBase)(({ theme }: CustomInputProps)=>({
   color: theme.palette.secondary.contrastText,
   border: `1px solid ${theme.palette.secondary.contrastText}`,
   padding: '1px',

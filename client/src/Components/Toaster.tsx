@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export type severity = 'success' | 'error';
 
-interface IProps {
+interface ToasterProps {
     message: string;
     severity: severity;
     onClose?: () => void;
@@ -13,7 +13,7 @@ interface IProps {
     setOpen: (open: boolean) => void
 }
 
-const Toaster = ({ message, onClose, setOpen, open, severity }: IProps) => {
+const Toaster = ({ message, onClose, setOpen, open, severity }: ToasterProps) => {
 
 
     const handleClose = () => {

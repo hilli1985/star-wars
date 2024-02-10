@@ -4,7 +4,6 @@ import CharacterCard from './CharacterCard';
 import { useSearchContext } from '../SearchContext';
 import { Typography } from '@mui/material';
 import CustomGrid from './CustomGrid';
-import { margin } from '@mui/system';
 
 export interface Character {
   name: string;
@@ -16,11 +15,10 @@ export interface Character {
 
 const CharacterList: React.FC = () => {
   const {  searchResults, theme } = useSearchContext();
-  console.log(searchResults);
   return (
     !!searchResults.length ? <CustomGrid container spacing={4} style={{marginTop:16}}  >
       {searchResults.map((character, index) => (
-        <Grid key={index} xs={12} sm={6} md={4} lg={4} >
+        <Grid key={index}>
           <CharacterCard character={character} index={index.toString()} />
         </Grid>
       ))}

@@ -6,7 +6,7 @@ interface SpinnerProps {
   color?: string;
 }
 
-const Spinner: React.FC<SpinnerProps> = ({ size = 40, color = 'primary' }) => {
+const Spinner: React.FC<SpinnerProps> = () => {
   return (
     <span className="loader"></span>
   );

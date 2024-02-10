@@ -8,9 +8,10 @@ import { useSearchContext } from "./SearchContext";
 import Spinner from "./Components/Spinner";
 import { Typography } from "@mui/material";
 import Toaster from "./Components/Toaster";
+import PaginationButtons from "./Components/PaginationButtons";
 
 function App() {
-  const { isLoading, open, setOpen, severity, message } = useSearchContext();
+  const { isLoading, open, setOpen, severity, message, handlePrevious, handleNext } = useSearchContext();
   const [light, setLight] = React.useState(false);
   const { theme, setTheme } = useSearchContext();
   
@@ -34,6 +35,7 @@ function App() {
         </Typography>
         <SearchBar />
         <Toaster message={message} severity={severity} open={open} setOpen={setOpen}/>
+        <PaginationButtons onNext={handleNext} onPrevious={handlePrevious} />
         {isLoading ? <Spinner /> :
           <CharacterList />}
       </div>
