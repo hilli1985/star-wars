@@ -8,7 +8,7 @@
     "test": "jest",
     "start": "ts-node ./index.ts",
     "dev": "nodemon ./index.ts",
-    "build": "tsc"
+    "build": "webpack --config webpack.server.config.js"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +33,9 @@
     "superagent": "^8.1.2",
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.3.3"
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
   }
 }

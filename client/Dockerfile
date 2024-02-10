@@ -16,8 +16,8 @@ COPY build /app/build
 # Install serve globally using npm
 RUN npm install -g serve
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 3000
+EXPOSE 3000
 
 # Command to run when the container starts
-CMD ["serve", "-s", "build", "-l", "8080"]
+CMD ["serve", "-s", "build", "-l", "3000"]
